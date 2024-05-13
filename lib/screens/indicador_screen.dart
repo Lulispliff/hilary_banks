@@ -24,64 +24,75 @@ class _IndicadorScreenState extends State<IndicadorScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          automaticallyImplyLeading: false,
-          backgroundColor: Colors.blue,
-          centerTitle: true,
-          title: const Text("Cadastro de Indicadores",
-              style: TextStyle(fontSize: 26, color: Colors.white)),
-        ),
-        body: Consumer<IndicadoresProvider>(
-          builder: (context, indicadoresProvider, child) {
-            final indicadores = indicadoresProvider.indicadores;
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        backgroundColor: Colors.blue,
+        centerTitle: true,
+        title: const Text("Cadastro de Indicadores",
+            style: TextStyle(fontSize: 26, color: Colors.white)),
+      ),
+      body: Consumer<IndicadoresProvider>(
+        builder: (context, indicadoresProvider, child) {
+          final indicadores = indicadoresProvider.indicadores;
 
-            return indicadores.isEmpty
-                ? const Center(
-                    child: Text(
-                      "Sua lista de indicadores está vazia",
-                      style: TextStyle(fontSize: 18),
-                    ),
-                  )
-                : ListView.builder(
-                    itemCount: indicadores.length,
-                    itemBuilder: (context, index) {
-                      return ListTile(
-                        title: Text(
-                          "Indicador: ${capitalizeFirstLetter(indicadores[index].nome)} - ID: ${indicadores[index].id}",
-                          style: const TextStyle(
-                              fontSize: 18, color: Colors.black),
-                        ),
-                        trailing: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            IconButton(
-                              onPressed: () => modificarIndicador(index),
-                              icon: const Icon(Icons.create_sharp),
-                            ),
-                            IconButton(
-                              onPressed: () {
-                                indicadoresProvider
-                                    .removerIndicador(indicadores[index]);
-                              },
-                              icon: const Icon(Icons.delete),
-                            ),
-                          ],
-                        ),
-                      );
-                    },
-                  );
-          },
-        ),
-        floatingActionButton: SizedBox(
-          width: 50,
-          height: 50,
-          child: FloatingActionButton(
-            onPressed: addIndicadorDialog,
-            backgroundColor: Colors.blue,
-            shape: const CircleBorder(),
-            child: const Icon(Icons.add, color: Colors.white),
-          ),
-        ));
+          return indicadores.isEmpty
+              ? const Center(
+                  child: Text(
+                    "Sua lista de indicadores está vazia",
+                    style: TextStyle(fontSize: 18),
+                  ),
+                )
+              : ListView.builder(
+                  itemCount: indicadores.length,
+                  itemBuilder: (context, index) {
+                    return ListTile(
+                      title: Text(
+                        "Indicador: ${capitalizeFirstLetter(indicadores[index].nome)} - ID: ${indicadores[index].id}",
+                        style:
+                            const TextStyle(fontSize: 18, color: Colors.black),
+                      ),
+                      trailing: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          IconButton(
+                            onPressed: () => modificarIndicador(index),
+                            icon: const Icon(Icons.create_sharp),
+                          ),
+                          IconButton(
+                            onPressed: () {
+                              indicadoresProvider
+                                  .removerIndicador(indicadores[index]);
+                            },
+                            icon: const Icon(Icons.delete),
+                          ),
+                        ],
+                      ),
+                    );
+                  },
+                );
+        },
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: addIndicadorDialog,
+        backgroundColor: Colors.blue,
+        shape: const CircleBorder(),
+        child: const Icon(Icons.add, color: Colors.white),
+      ),
+      bottomNavigationBar: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          TextButton(
+              onPressed: () {},
+              child: const Text("Cadastro de cotações",
+                  style: TextStyle(color: Colors.blue))),
+          const SizedBox(width: 8),
+          TextButton(
+              onPressed: () {},
+              child: const Text("Tela de gráfico",
+                  style: TextStyle(color: Colors.blue)))
+        ],
+      ),
+    );
   }
 
   void addIndicadorDialog() {
