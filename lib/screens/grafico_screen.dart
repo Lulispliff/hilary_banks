@@ -27,25 +27,8 @@ class GraficoScreenState extends State<GraficoScreen> {
         automaticallyImplyLeading: false,
         backgroundColor: Colors.blue,
         centerTitle: true,
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            IconButton(
-              onPressed: voltarPag,
-              icon: const Icon(Icons.arrow_back, color: Colors.white),
-              padding: const EdgeInsets.fromLTRB(0, 5, 10, 0),
-            ),
-            const Text(
-              "Gráfico de Cotações",
-              style: TextStyle(fontSize: 26, color: Colors.white),
-            ),
-            IconButton(
-              onPressed: avancarPag,
-              icon: const Icon(Icons.arrow_forward, color: Colors.white),
-              padding: const EdgeInsets.fromLTRB(10, 5, 0, 0),
-            ),
-          ],
-        ),
+        title: const Text("Gráfico de Cotações",
+            style: TextStyle(fontSize: 26, color: Colors.white)),
       ),
       body: buildGraficoInicialScreen(cotacaoProvider),
       floatingActionButton: SizedBox(

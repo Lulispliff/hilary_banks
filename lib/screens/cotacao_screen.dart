@@ -12,11 +12,12 @@ import 'package:cotacoesnew/utils/cotacao.dart';
 import 'package:cotacoesnew/utils/string_utils.dart';
 
 class CotacaoScreen extends StatefulWidget {
-  const CotacaoScreen({Key? key, required this.indicadores}) : super(key: key);
+  const CotacaoScreen({super.key, required this.indicadores});
 
   final List<Indicador> indicadores;
 
   @override
+  // ignore: library_private_types_in_public_api
   _CotacaoScreenState createState() => _CotacaoScreenState();
 }
 
@@ -38,25 +39,8 @@ class _CotacaoScreenState extends State<CotacaoScreen> {
         automaticallyImplyLeading: false,
         backgroundColor: Colors.blue,
         centerTitle: true,
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            IconButton(
-              onPressed: voltarPag,
-              icon: const Icon(Icons.arrow_back, color: Colors.white),
-              padding: const EdgeInsets.fromLTRB(0, 5, 10, 0),
-            ),
-            const Text(
-              "Cadastro de Cotações",
-              style: TextStyle(fontSize: 26, color: Colors.white),
-            ),
-            IconButton(
-              onPressed: avancarPag,
-              icon: const Icon(Icons.arrow_forward, color: Colors.white),
-              padding: const EdgeInsets.fromLTRB(10, 5, 0, 0),
-            ),
-          ],
-        ),
+        title: const Text("Cadastro de Cotações",
+            style: TextStyle(fontSize: 26, color: Colors.white)),
       ),
       body: buildCotacoesScreen(),
       floatingActionButton: buildButtons(),
